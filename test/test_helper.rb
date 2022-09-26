@@ -21,4 +21,11 @@ class ActiveSupport::TestCase
       yield
     end
   end
+
+  def with_user(as: nil, path: '/')
+    with_request_url_and_clearance path do
+      sign_in_as as if as
+      yield
+    end
+  end
 end
