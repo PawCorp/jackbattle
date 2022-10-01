@@ -1,1 +1,15 @@
-<h1><%= content %></h1>
+<div class="form-row <%= "form-row--#{@variant}" %>">
+  <%= @form.label @name if @name.present? %>
+  <% if @name && @record && @record.invalid? && @record.errors[@name].length.positive? %>
+    <div class="form-row__errors">
+      <% @record.errors[@name].each do |error| %>
+        <div class="form-row__errors__error">
+          <ion-icon name="warning"></ion-icon> <%= error %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-row__controls">
+    <%= content %>
+  </div>
+</div>

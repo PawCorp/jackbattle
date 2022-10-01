@@ -1,0 +1,18 @@
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  position: relative;
+}
+
+.form-row {
+  &--full {
+    grid-column: 1 / span 3;
+  }
+  &--medium {
+    grid-column: 1 / span 2;
+  }
+  &--small {
+    grid-column: 1 / span 1;
+  }
+}
