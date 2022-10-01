@@ -1,0 +1,23 @@
+<div class="text-field">
+  <%= form.label :email %>
+  <%= user.errors[:email] if user %>
+  <%= form.email_field :email %>
+</div>
+
+<div class="text-field">
+  <%= form.label :username %>
+  <%= user.errors[:username] if user %>
+  <%= form.text_field :username %>
+</div>
+
+<div class="password-field">
+  <%= form.label :password %>
+  <%= user.errors[:password] if user %>
+  <%= form.password_field :password %>
+</div>
+
+<div class="password-field">
+  <%= form.label :password_confirmation %>
+  <%= user.errors[:password_confirmation] if user %>
+  <%= form.password_field :password_confirmation %>
+</div>
