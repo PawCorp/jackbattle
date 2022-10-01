@@ -4,6 +4,7 @@ FactoryBot.define do
     confirmation_token { "1234" }
     remember_token { "5678" }
     password { "hi" }
+    username { "ailurus_fulgens" }
     encrypted_password { "$2a$12$5vI1uLLUcNBKaJ.jxu1pdOrM3LPJmkzBtK270IqCfYRqns3j7oBZW" }
   end
 end

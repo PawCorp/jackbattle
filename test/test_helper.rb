@@ -28,4 +28,12 @@ class ActiveSupport::TestCase
       yield
     end
   end
+
+  def render_component(component:, default_props: {}, props: {}, &block)
+    raise "You must provide a component to render_component." unless component
+
+    merged_props = default_props.merge props
+
+    render_inline component.new(**merged_props), &block
+  end
 end

@@ -3,32 +3,28 @@
 require "test_helper"
 
 class HeaderComponentTest < ViewComponent::TestCase
-  def test_header_renders_site_title
-    render do
-      assert_selector('h1', text: 'Jackbattle')
-    end
+  test "renders site title" do
+    render
+    assert_selector('h1', text: 'Jackbattle')
   end
 
-  def test_header_signed_out_state
-    render(as: nil) do
-      assert_selector('a', text: 'Sign in')
-    end
+  test "signed out state" do
+    render(as: nil)
+    assert_selector('a', text: 'Sign in')
   end
 
-  def test_header_signed_in_state
+  test "signed in state" do
     user = build(:user)
-    render(as: user) do
-      assert_text(user.email)
-      assert_selector('button', text: 'Sign out')
-    end
+    render(as: user)
+    assert_text(user.username)
+    assert_selector('button', text: 'Sign out')
   end
 
   private
 
   def render(as: nil)
     with_user(as:) do
-      render_inline(HeaderComponent.new)
-      yield
+      render_component component: HeaderComponent
     end
   end
 end
