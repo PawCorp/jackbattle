@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :participant do
-    user { nil }
-    game { nil }
-    present { false }
+    user { create(:user) }
+    game { create(:game) }
+    present { true }
     action_points { 1 }
     pace { 1.5 }
   end

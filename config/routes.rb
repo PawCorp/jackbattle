@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :games
   # ---- jackbattle ----
   root "static_content#home"
+  resources :games do
+    collection do
+      get :mine, as: 'my'
+    end
+  end
 
   # ---- Clearance (Auth) ----
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

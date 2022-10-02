@@ -1,37 +1,39 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :require_login, only: %i[ new ]
+  before_action :require_login, only: %i[ mine new edit create update destroy ]
+  before_action :must_be_creator, only: %i[ edit update destroy ]
 
-  # GET /games or /games.json
+  # GET /games
   def index
-    @games = Game.all
+    @games = Game.joins(:participants).where(participants: { present: true }).distinct
   end
 
-  # GET /games/1 or /games/1.json
+  # GET /games/mine
+  def mine
+    @games = Game.where(creator: current_user).all
+  end
+
+  # GET /games/1
   def show
   end
 
   # GET /games/new
   def new
-    @game = Game.new
+    @game = current_user.games.new
   end
 
   # GET /games/1/edit
   def edit
   end
 
-  # POST /games or /games.json
+  # POST /games
   def create
     @game = Game.new(game_params)
 
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+    if @game.save
+      redirect_to game_url(@game), notice: "Game was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,20 +50,23 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
 
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to games_url, notice: "Game was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def game_params
-      params.require(:game).permit(:creator_id, :name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def game_params
+    params.require(:game).permit(:creator_id, :name)
+  end
+
+  def must_be_creator
+    is_creator = @game.creator == current_user
+    redirect_to sign_in_url, alert: "You aren't authenticated to do that." unless is_creator
+  end
 end
