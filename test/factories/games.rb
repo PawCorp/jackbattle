@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :game do
-    creator { nil }
-    name { "MyString" }
+    creator factory: :user
+
+    name { FFaker::Game.title }
   end
 end

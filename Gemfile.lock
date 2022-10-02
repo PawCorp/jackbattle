@@ -110,6 +110,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    ffaker (2.21.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   dartsass-rails (~> 0.4.0)
   debug
   factory_bot_rails
+  ffaker
   importmap-rails
   jbuilder
   pg (~> 1.1)
