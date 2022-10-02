@@ -1,23 +1,23 @@
-<div class="text-field">
-  <%= form.label :email %>
-  <%= user.errors[:email] if user %>
+<%= render Forms::RowComponent.new(name: :email, record: user, form:) do %>
   <%= form.email_field :email %>
-</div>
+<% end %>
 
-<div class="text-field">
-  <%= form.label :username %>
-  <%= user.errors[:username] if user %>
+<%= render Forms::RowComponent.new(name: :username, record: user, form:, variant: :small) do %>
   <%= form.text_field :username %>
-</div>
+<% end %>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= user.errors[:password] if user %>
+<%= render Forms::RowComponent.new(name: :password, record: user, form:, variant: :medium) do %>
   <%= form.password_field :password %>
-</div>
+<% end %>
 
-<div class="password-field">
-  <%= form.label :password_confirmation %>
-  <%= user.errors[:password_confirmation] if user %>
+<%= render Forms::RowComponent.new(name: :password_confirmation, record: user, form:, variant: :medium) do %>
   <%= form.password_field :password_confirmation %>
-</div>
+<% end %>
+
+<%= render Forms::RowComponent.new(form:) do %>
+  <%= form.submit %>
+<% end %>
+
+<%= render Forms::RowComponent.new(form:) do %>
+  <%= link_to t(".sign_in"), sign_in_path %>
+<% end %>

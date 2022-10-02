@@ -1,2 +1,9 @@
-@use './pico/pico.classless';
+@use './simple.css';
 @use './header';
+@use './forms';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+  --font-title: 'Bebas Neue', sans-serif;
+}
