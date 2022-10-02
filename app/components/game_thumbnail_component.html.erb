@@ -1,0 +1,9 @@
+<div id="<%= dom_id @game %>" class="game-thumbnail">
+  <%= link_to @game do %>
+    <h3><%= @game.name %></h3>
+    <strong>
+      <ion-icon name="flash"></ion-icon>
+      <%= @game.participants.count %>
+    </strong>
+  <% end %>
+</div>

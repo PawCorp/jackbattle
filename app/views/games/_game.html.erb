@@ -1,12 +1,3 @@
 <div id="<%= dom_id game %>">
-  <p>
-    <strong>Creator:</strong>
-    <%= game.creator_id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= game.name %>
-  </p>
-
+  <%= render GameThumbnailComponent.new(game:) %>
 </div>

@@ -1,6 +1,7 @@
 @use './simple.css';
 @use './header';
 @use './forms';
+@use './components/game-thumbnail';
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
@@ -8,6 +9,10 @@
   font-size: 0.9rem;
 
   --font-title: 'Bebas Neue', var(--sans-font);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
 
   --danger: #CC3525;
   --danger-text: #461510;
