@@ -5,5 +5,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
-  --font-title: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+
+  --font-title: 'Bebas Neue', var(--sans-font);
+
+  --danger: #CC3525;
+  --danger-text: #461510;
+  --success: #30AA65;
+
+  /* Default (light) theme */
+  --bg: #fff;
+  --accent-bg: #fff6f6;
+  --text: #413a3a;
+  --text-light: #776f6f;
+  --border: #c47d7d;;
+  --accent: #b62828;
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ff3333;
+  --disabled: #efefef;
+  /* Brightness filter is applied on header links in hover state */
+  --hover-brightness: brightness(0.6);
+
+  /* Dark theme */
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+    --bg: #171717;
+    --accent-bg: #282828;
+    --text: #dcdcdc;
+    --text-light: #ababab;
+    --border: #493c3c;
+    --accent: #ea4646;
+    --code: #d81b60;
+    --preformatted: #ccc;
+    --marked: #ff3333;
+    --disabled: #341111;
+    /* Brightness filter in hover state is updated to improve visibility in dark-mode */
+    --hover-brightness: brightness(1.4);
+  }
+}
+
+h2 {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: normal;
+  margin-top: 3.25rem;
+
+  &.one-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & ion-icon {
+    transform: translateY(0.05em);
+    font-size: 0.8em;
+
+    &.big {
+      transform: translateY(0.15em);
+      font-size: 1em;
+    }
+  }
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 1.75rem 0 0;
+  font-weight: normal;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 0.25rem;
+
+  & + p {
+    margin: 0 auto 2rem auto;
+    max-width: 320px;
+  }
+}
+
+.accent-block {
+  background: var(--accent-bg);
+  padding: 40px 1.5rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 2.25rem;
+  display: block;
+
+  &.danger {
+    border: 2px solid var(--danger);
+
+    .accent-block__charm {
+      color: var(--danger);
+    }
+
+    button {
+      background: var(--danger);
+      color: #FFF;
+      border: none;
+    }
+  }
+
+  &.spaced {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .accent-block h2:first-of-type {
+    margin-top: 0;
+  }
+
+  & > p {
+    margin: 0;
+  }
+
+  button.main-action {
+    margin: 1rem 0 0;
+  }
+
+  .accent-block__charm {
+    color: var(--border);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 0 0.75rem;
+    height: 0;
+    transform: translateY(-100%);
+
+    ion-icon {
+      font-size: 1.2em;
+    }
+  }
 }
