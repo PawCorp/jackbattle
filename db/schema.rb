@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_01_151509) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_02_002842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_games_on_creator_id"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.boolean "present", default: true, null: false
+    t.integer "action_points", default: 0, null: false
+    t.float "pace", default: 1.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_participants_on_game_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,4 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_01_151509) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "games", "users", column: "creator_id"
+  add_foreign_key "participants", "games"
+  add_foreign_key "participants", "users"
 end
