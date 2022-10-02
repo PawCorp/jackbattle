@@ -1,9 +1,41 @@
-header {
+body > header {
   display: flex;
+  height: 5.5rem;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;
+  align-content: center;
   align-items: center;
   gap: 1rem;
 
-  h1 {
-    margin: 0;
+  a {
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text);
+    }
+
+    h1 {
+      $baseline-offset: 2px;
+
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: normal;
+      font-family: var(--font-title);
+      line-height: 1;
+      transform: translateY($baseline-offset);
+
+      ion-icon {
+        font-size: 0.8em;
+        transform: translateY(-$baseline-offset);
+      }
+    }
+  }
+
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }
