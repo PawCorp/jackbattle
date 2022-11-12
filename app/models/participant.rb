@@ -4,10 +4,10 @@ class Participant < ApplicationRecord
   validates :game, uniqueness: { scope: :user }
 
   after_create_commit do
-    game.update_gameboard
+    game.after_update_participants
   end
 
   after_destroy_commit do
-    game.update_gameboard
+    game.after_update_participants
   end
 end

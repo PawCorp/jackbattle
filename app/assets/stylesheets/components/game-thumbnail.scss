@@ -3,6 +3,10 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
 
+  turbo-cable-stream-source {
+    display: none;
+  }
+
   .game-thumbnail {
     border: 1px solid var(--border);
     position: relative;

@@ -2,12 +2,9 @@
 
 <h1>Games</h1>
 
-<div id="games">
+<div class="game-thumbnails">
   <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
+    <%= render GameThumbnailComponent.new game: %>
   <% end %>
 </div>
 

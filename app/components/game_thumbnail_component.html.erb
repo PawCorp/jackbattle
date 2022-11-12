@@ -1,4 +1,5 @@
-<div id="<%= dom_id @game %>" class="game-thumbnail">
+<%= turbo_stream_from @game %>
+<%= turbo_frame_tag (game_thumbnail_id @game), class: 'game-thumbnail' do %>
   <%= link_to @game do %>
     <h3><%= @game.name %></h3>
     <strong>
@@ -6,4 +7,4 @@
       <%= @game.participants.count %>
     </strong>
   <% end %>
-</div>
+<% end %>
