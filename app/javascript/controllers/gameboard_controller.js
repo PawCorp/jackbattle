@@ -10,7 +10,23 @@ export default class extends Controller {
     connect() {
         if (this.hasGameIdValue) {
             this.consumer.arriveAtGame(this.gameIdValue)
+
+            /**
+             * Hack to listen for ping event on actioncable.
+             */
+            this.consumer.consumer.connection.monitor.recordPing = new Proxy(
+                this.consumer.consumer.connection.monitor.recordPing,
+                {
+                    apply: (target, thisArg) => {
+                        this.ping()
+                        return target.bind(thisArg)();
+                    }
+                }
+            )
         }
+    }
+
+    ping () {
     }
 
     disconnect() {

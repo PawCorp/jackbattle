@@ -1,1 +1,9 @@
-<div>Add Gameboard template here</div>
+<div id="<%= dom_id @game %>" data-controller="gameboard" data-gameboard-game-id-value="<%= @game.id %>">
+  <h2><%= @game.name %></h2>
+
+  <% @game.participants.each do |participant| %>
+    <div>
+
+    </div>
+  <% end %>
+</div>
