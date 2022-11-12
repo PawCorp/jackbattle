@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :participant_in_games, class_name: 'Game', through: :participants, source: :game
   validates :username, presence: true, uniqueness: true
+  validates :password, presence: true, confirmation: true, unless: :skip_password_validation?
+  validates :password_confirmation, presence: true, unless: :skip_password_validation?
 
   def arrive_at_game(game)
     raise "game must be a Game model" unless game.is_a? Game
