@@ -1,7 +1,5 @@
-<div id="<%= dom_id game %>">
-  <p>
-    <strong>Name:</strong>
-    <%= game.name %>
-  </p>
+<div id="<%= dom_id game %>" data-controller="gameboard">
+  <h2><%= game.name %></h2>
 
+  <%= render 'game_participants' %>
 </div>
