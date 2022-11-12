@@ -8,7 +8,7 @@ module ApplicationCable
     end
 
     def disconnect
-      if @active_game && @current_user
+      if @active_game&.is_a?(Game) && @current_user
         @active_game.participants.where(user: @current_user).destroy_all
       end
     end
@@ -17,18 +17,14 @@ module ApplicationCable
 
     def find_user
       if remember_token.present?
-        @current_user ||= user_from_remember_token(remember_token)
+        user_from_remember_token(remember_token)
+      else
+        nil
       end
-
-      @current_user
-    end
-
-    def cookies
-      @cookies ||= ActionDispatch::Request.new(@env).cookie_jar
     end
 
     def remember_token
-      cookies[Clearance.configuration.cookie_name.freeze]
+      cookies[Clearance.configuration.cookie_name]
     end
 
     def user_from_remember_token(token)

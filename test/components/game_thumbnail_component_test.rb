@@ -4,7 +4,7 @@ require "test_helper"
 
 class GameThumbnailComponentTest < ViewComponent::TestCase
   test "renders a game's name" do
-    game = build(:game)
+    game = create(:game)
 
     render_component(
       component: GameThumbnailComponent,

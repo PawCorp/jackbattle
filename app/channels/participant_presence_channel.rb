@@ -1,10 +1,9 @@
 class ParticipantPresenceChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
   end
 
   def unsubscribed
-    leave
+    leave_game
   end
 
   def arrive_at_game(data)

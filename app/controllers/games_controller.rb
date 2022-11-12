@@ -5,8 +5,8 @@ class GamesController < ApplicationController
 
   # GET /games
   def index
-    #@games = Game.joins(:participants).where(participants: { present: true }).distinct
-    @games = Game.all
+    @games = Game.joins(:participants).where(participants: { present: true }).distinct
+    #@games = Game.all
   end
 
   # GET /games/mine

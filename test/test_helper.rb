@@ -23,6 +23,8 @@ class ActiveSupport::TestCase
   end
 
   def with_user(as: nil, path: '/')
+    raise "Bad value for user, it can only be nil or a User record" unless as.nil? || as.is_a?(User)
+    request.cookies[Clearance.configuration.cookie_name] = as.remember_token if as
     with_request_url_and_clearance path do
       sign_in_as as if as
       yield
