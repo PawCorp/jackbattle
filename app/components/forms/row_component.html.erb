@@ -1,6 +1,11 @@
+<%
+  for_record = @name && @record
+  has_errors = for_record && @record.errors[@name].length.positive?
+%>
+
 <div class="form-row <%= "form-row--#{@variant}" %>">
   <%= @form.label @name if @name.present? %>
-  <% if @name && @record && @record.invalid? && @record.errors[@name].length.positive? %>
+  <% if has_errors %>
     <div class="form-row__errors">
       <% @record.errors[@name].each do |error| %>
         <div class="form-row__errors__error">
@@ -9,7 +14,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class="form-row__controls">
+  <div class="form-row__controls <%= 'form-row__controls--has-error' if has_errors %>">
     <%= content %>
   </div>
 </div>

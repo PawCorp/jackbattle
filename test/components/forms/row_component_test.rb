@@ -3,7 +3,8 @@
 require "test_helper"
 
 class Forms::RowComponentTest < ViewComponent::TestCase
-  mock_form = { }
+  mock_form = {}
+
   def mock_form.label(name)
     "label for #{name}"
   end
@@ -50,14 +51,29 @@ class Forms::RowComponentTest < ViewComponent::TestCase
 
     mock_user = build(:user, { targeting => nil })
 
+    begin
+      mock_user.save
+    rescue
+      render_component(
+        component: Forms::RowComponent,
+        props: { name: targeting, record: mock_user, form: mock_form }
+      )
+
+      assert_selector('.form-row__errors', count: 1)
+      assert_selector('.form-row__errors .form-row__errors__error', count: 1, text: "can't be blank")
+    end
+  end
+
+  test "should not show errors for new resources" do
+    targeting = :username
+
+    mock_user = build(:user, { targeting => nil })
+
     render_component(
       component: Forms::RowComponent,
       props: { name: targeting, record: mock_user, form: mock_form }
     )
 
-    print page.native
-
-    assert_selector('.form-row__errors', count: 1)
-    assert_selector('.form-row__errors .form-row__errors__error', count: 1, text: "can't be blank")
+    assert_selector('.form-row__errors', count: 0)
   end
 end

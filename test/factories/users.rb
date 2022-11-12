@@ -6,6 +6,6 @@ FactoryBot.define do
     encrypted_password { "$2a$12$5vI1uLLUcNBKaJ.jxu1pdOrM3LPJmkzBtK270IqCfYRqns3j7oBZW" }
 
     sequence(:username) { |n| "#{FFaker::Internet.user_name}#{n}" }
-    email { "#{username}@#{FFaker::Internet.domain_name}" }
+    email { "#{FFaker::Internet.email username}" }
   end
 end
