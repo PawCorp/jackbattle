@@ -11,6 +11,7 @@ class GamesController < ApplicationController
   # GET /games/mine
   def mine
     @games = Game.where(creator: current_user).all
+    render :index
   end
 
   # GET /games/1
