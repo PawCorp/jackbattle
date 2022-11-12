@@ -27,6 +27,7 @@ export default class extends Controller {
     }
 
     ping () {
+
     }
 
     disconnect() {
