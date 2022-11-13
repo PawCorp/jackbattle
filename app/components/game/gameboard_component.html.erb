@@ -1,6 +1,9 @@
 <div id="<%= dom_id @game %>" data-controller="gameboard" data-gameboard-game-id-value="<%= @game.id %>">
   <h2><%= @game.name %></h2>
 
+  <%= turbo_stream_from @game %>
+  <%= render Game::Participants::ListComponent.new game: @game %>
+
   <% @game.participants.each do |participant| %>
     <div>
         <%= participant.user.username %>

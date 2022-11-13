@@ -2,11 +2,11 @@
 
 require "test_helper"
 
-class GameboardComponentTest < ViewComponent::TestCase
+class Game::Participants::ListComponentTest < ViewComponent::TestCase
   def test_component_renders_something_useful
     # assert_equal(
     #   %(<span>Hello, components!</span>),
-    #   render_inline(Game::GameboardComponent.new(message: "Hello, components!")).css("span").to_html
+    #   render_inline(Game::Participants::ListComponent.new(message: "Hello, components!")).css("span").to_html
     # )
   end
 end

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag (game_participants_id @game), class: 'participants' do %>
+  <% @game.participants.each do |participant| %>
+    <%= render Game::Participants::ItemComponent.new participant: %>
+  <% end %>
+<% end %>

@@ -11,11 +11,15 @@ class Game < ApplicationRecord
 
   def after_update_participants
     update_thumbnails
+    update_participant_lists
   end
 
   private
 
   def update_thumbnails
     broadcast_replace target: (game_thumbnail_id self), html: ApplicationController.render_component(GameThumbnailComponent.new(game: self))
+  end
+
+  def update_participant_lists
   end
 end

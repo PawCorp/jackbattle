@@ -4,6 +4,7 @@
 
 <div class="game-thumbnails">
   <% @games.each do |game| %>
+    <%= turbo_stream_from game %>
     <%= render GameThumbnailComponent.new game: %>
   <% end %>
 </div>
